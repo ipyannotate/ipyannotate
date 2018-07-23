@@ -1,0 +1,10 @@
+language: python
+python:
+  - "2.7"
+  - "3.5"
+  - "3.6"
+script:
+  - sed -i 's/kernelspec//' test.ipynb
+  - pytest --pep8 ipyannotate --nbval-lax --cov ipyannotate --cov-report xml -v test.ipynb
+after_success:
+  coveralls

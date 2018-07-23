@@ -1,0 +1,11 @@
+.DS_Store
+.cache/
+.coverage
+.ipynb_checkpoints/
+*.egg-info/
+dist/
+build/
+*.pyc
+node_modules/
+ipyannotate/static/
+coverage.xml

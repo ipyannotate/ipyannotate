@@ -1,0 +1,2 @@
+recursive-include ipyannotate/static *.*
+include ipyannotate.json

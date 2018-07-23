@@ -1,0 +1,202 @@
+
+/*          */
+/*  BUTTON  */
+/*          */
+
+
+button.annotate {
+    display: inline-block;
+    min-width: 20px;
+    min-height: 20px;
+    margin: 5px 5px 0 0;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+
+    border: none;  /* overwrite jupyter button */
+    border-bottom: solid 2px;
+
+    font-size: 14px;
+    font-weight: 500;
+    
+    outline: none;
+}
+
+button.annotate:active {
+    border-bottom-width: 1px;
+    margin-bottom: 1px;  /* to keep height the same, prevent jitter */
+}
+
+button.annotate.active {
+    box-shadow: 0px 5px 9px -4px #03A9F4;
+}
+
+button.annotate .label {
+    padding: 0;   /* overwrite jupyter .label */
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+button.annotate kbd {
+    display: inline-block;
+    border: none;
+    padding: 0;
+    margin: 0;
+    margin-top: -5px;
+    margin-left: 5px;
+    float: right;
+    font-size: 10px;
+    color: inherit;
+}
+
+
+/*         */
+/*  PANEL  */
+/*         */
+
+
+#panel.annotate  {
+    display: block;
+    outline: none;
+}
+
+#panel.annotate .capture {
+    visibility: hidden;
+    float: right;
+    vertical-align: bottom;
+    margin-right: 2px;
+    color: #d6d5d5;
+}
+
+#panel.annotate:focus .capture {
+    visibility: visible;
+}
+
+#panel.annotate .capture.active {
+    color: #607d8b;
+}
+
+#panel.annotate #toolbar, #panel.annotate #progress {
+    margin: 0 0 10px 0;
+}
+
+
+/*            */
+/*  ATOMS  */
+/*            */
+
+
+.atoms {
+    line-height: 0;
+}
+
+.atom {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 1px 1px 0;
+    padding: 0;
+    border-bottom: solid 1px #d8d7d7;
+    background: #efefef;
+}
+
+
+/*        */
+/*  GRAY  */
+/*        */
+
+
+button.annotate.gray {
+    border-bottom-color: #aaa;
+    background: #efefef;
+    color: #888;
+    text-shadow: 0 1px 0 #fff;
+}
+
+button.annotate.gray:hover {
+    background: #e8e8e8;
+}
+
+.atom.gray {
+    border-bottom-color: #9e9e9e;
+    background: #cac8c8;
+}
+
+
+/*        */
+/*  BLUE  */
+/*        */
+
+
+button.annotate.blue {
+    border-bottom-color: #064f73;
+    background: #0088cc;
+    color: #fafafa;
+    text-shadow: 0 1px 0 #00344e;
+}
+
+button.annotate.blue:hover {
+    background: #007fbf;
+}
+
+.atom.blue {
+    border-bottom-color: #50849e;
+    background: #84bcd8;
+}
+  
+/*       */
+/*  RED  */
+/*       */
+
+
+button.annotate.red {
+    border-bottom-color: #9e3a36;
+    background: #e8554f;
+    color: #fafafa;
+    text-shadow: 0 1px 0 #561f1d;
+}
+
+button.annotate.red:hover {
+    background: #de504a;
+}
+
+.atom.red {
+    border-bottom-color: #ab6461;
+    background: #e4837f;
+}
+
+
+/*         */
+/*  GREEN  */
+/*         */
+
+
+button.annotate.green {
+    border-bottom-color: #387138;
+    background: #5bb75b;
+    color: #fafafa;
+    text-shadow: 0 1px 0 #204020;
+}
+    
+button.annotate.green:hover {
+    background: #54a954;
+}
+
+
+.atom.green {
+    border-bottom-color: #72ad72;
+    background: #95d495;
+}
+
+
+/*               */
+/*  ATOM ACTIVE  */
+/*               */
+
+
+.atom.active {
+    background: #03A9F4;
+    border-bottom-color: #0071a5;
+}
+
+
