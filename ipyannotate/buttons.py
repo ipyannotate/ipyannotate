@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from traitlets import Unicode, Bool, Enum, Any
 
-from .utils import capped_repr
+from .utils import shorten
 from .shortcut import KEYS
 from .widget import DOMWidget, register_widget
 from .colors import COLORS, GRAY, BLUE, RED, GREEN
@@ -60,7 +60,7 @@ class ValueButton(Button):
 
     def __init__(self, value, color=GRAY, icon=None, label=None, shortcut=None):
         if label is None:
-            label = capped_repr(value, cap=10)
+            label = shorten(str(value), cap=10)
         super(ValueButton, self).__init__(
             color=color,
             icon=icon,

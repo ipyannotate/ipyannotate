@@ -1,7 +1,7 @@
 # coding: utf-8
 from __future__ import unicode_literals
 
-from .utils import capped_repr
+from .utils import shorten
 
 
 class Task(object):
@@ -29,7 +29,7 @@ class Task(object):
     def __repr__(self):
         return '{name}(output={output}, value={value})'.format(
             name=self.__class__.__name__,
-            output=capped_repr(self.output),
+            output=shorten(repr(self.output)),
             value=self.value
         )
 
