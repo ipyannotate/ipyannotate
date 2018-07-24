@@ -61,7 +61,7 @@ class Toolbar(DOMWidget):
 
     def register(self, annotation):
         if self.is_registered:
-            raise RuntimeError('already register: %r' % self.annotation)
+            raise RuntimeError('already register: %r' % self)
         self.annotation = annotation
         for button in self.buttons:
             button.register(annotation)
