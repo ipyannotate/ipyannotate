@@ -200,3 +200,13 @@ button.annotate.green:hover {
 }
 
 
+/*          */
+/*  OUTPUT  */
+/*          */
+
+
+.annotate .output_scroll {
+    height: 100%;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
