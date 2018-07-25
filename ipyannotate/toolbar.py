@@ -70,7 +70,7 @@ class Toolbar(DOMWidget):
     def validate_buttons(self, data):
         buttons = data['value']
         assert_uniq(_.value for _ in buttons if has_value(_))
-        assert_uniq(_.shortcut for _ in buttons)
+        assert_uniq(_.shortcut for _ in buttons if _.shortcut)
         removed, added = diff_buttons(self.buttons, buttons)
         for button in removed:
             self.stats.assert_free(button)
