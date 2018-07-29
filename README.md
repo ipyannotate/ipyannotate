@@ -20,7 +20,7 @@ For a development installation (requires npm),
     $ jupyter nbextension enable --py --sys-prefix ipyannotate
 
 
-For more examples and explanation see [ipyannotate documentation](http://nbviewer.jupyter.org/github/natasha/ipyannotate/blob/master/docs/index.ipynb).
+For examples see [ipyannotate-examples](http://nbviewer.jupyter.org/github/natasha/ipyannotate-examples/tree/master/), for documentation and more explanation see [ipyannotate documentation](http://nbviewer.jupyter.org/github/natasha/ipyannotate/blob/master/docs/index.ipynb).
 
 ## License
 
