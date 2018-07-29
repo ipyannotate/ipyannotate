@@ -1,7 +1,7 @@
 # ipyannotate [![Build Status](https://travis-ci.org/natasha/ipyannotate.svg?branch=master)](https://travis-ci.org/natasha/ipyannotate) [![Coverage Status](https://coveralls.io/repos/github/natasha/ipyannotate/badge.svg?branch=master)](https://coveralls.io/github/natasha/ipyannotate?branch=master)
 
 Jupyter Widget for data annotation
-<img scr="docs/i/screencast.gif">
+<img src="docs/i/screencast.gif">
 
 ## Installation
 
