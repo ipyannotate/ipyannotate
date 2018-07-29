@@ -3,8 +3,7 @@
 Jupyter Widget for data annotation
 <img scr="docs/i/screencast.gif">
 
-Installation
-------------
+## Installation
 
 To install use pip:
 
@@ -23,12 +22,11 @@ For a development installation (requires npm),
 
 For more examples and explanation see [ipyannotate documentation](http://nbviewer.jupyter.org/github/natasha/ipyannotate/blob/master/docs/index.ipynb).
 
-License
--------
+## License
 
 Source code of `ipyannotate` is distributed under MIT license (allows modification and commercial usage)
 
-# Support
+## Support
 
 - Chat — https://telegram.me/natural_language_processing
 - Issues — https://github.com/natasha/ipyannotate/issues
