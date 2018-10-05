@@ -17,6 +17,7 @@
   ],
   "files": [
     "lib/**/*.js",
+    "lib/*.css",
     "dist/*.js"
   ],
   "scripts": {
