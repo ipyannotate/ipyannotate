@@ -11,6 +11,11 @@ To install use pip:
     $ jupyter nbextension enable --py --sys-prefix ipyannotate
 
 
+Jupyterlab Support:
+
+    $ jupyter labextension install ipyannotate
+
+
 For a development installation (requires npm),
 
     $ git clone https://github.com/alexanderkuk/ipyannotate.git
