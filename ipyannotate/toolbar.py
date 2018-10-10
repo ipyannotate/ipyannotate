@@ -94,6 +94,10 @@ class Toolbar(DOMWidget):
         else:
             task.set(button.value)
             self.stats.add(button)
+
+        if button.callback:
+            button.callback(task)
+
         self.annotation.next()
 
     def update(self, value):
@@ -129,6 +133,10 @@ class MultiToolbar(Toolbar):
         else:
             task.add(value)
             self.stats.add(button)
+
+        if button.callback:
+            button.callback(task)
+
         self.annotation.update()
 
     def update(self, value):
