@@ -95,8 +95,8 @@ class Toolbar(DOMWidget):
             task.set(button.value)
             self.stats.add(button)
 
-        if button.on_click_custom:
-            button.on_click_custom(task)
+        if button.callback:
+            button.callback(task)
 
         self.annotation.next()
 
@@ -134,8 +134,8 @@ class MultiToolbar(Toolbar):
             task.add(value)
             self.stats.add(button)
 
-        if button.on_click_custom:
-            button.on_click_custom(task)
+        if button.callback:
+            button.callback(task)
 
         self.annotation.update()
 

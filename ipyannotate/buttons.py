@@ -10,8 +10,8 @@ from .colors import COLORS, GRAY, BLUE, RED, GREEN
 
 
 def _method_wrapper(foo):
-    def _wrapper(self, task):
-        return foo(task)
+    def _wrapper(self, button):
+        return foo(button)
     return _wrapper
 
 
@@ -26,7 +26,7 @@ class Button(DOMWidget):
     shortcut = Enum(KEYS, allow_none=True).tag(sync=True)
     active = Bool(False).tag(sync=True)
 
-    def __init__(self, color=GRAY, icon=None, label=None, shortcut=None, on_click_custom=None):
+    def __init__(self, color=GRAY, icon=None, label=None, shortcut=None, callback=None):
         super(Button, self).__init__(
             color=color,
             icon=icon,
@@ -35,7 +35,7 @@ class Button(DOMWidget):
         )
         self.annotation = None
 
-        self.on_click_custom = _method_wrapper(on_click_custom).__get__(self, Button) if on_click_custom is not None else None
+        self.on_click(callback)
         self.on_msg(self.handle_message)
 
     @property
@@ -62,11 +62,14 @@ class Button(DOMWidget):
     def click(self):
         self.send({'event': 'click'})
 
+    def on_click(self, callback):
+        self.callback = _method_wrapper(callback).__get__(self, Button) if callback is not None else None
+
 
 class ValueButton(Button):
     value = Any()
 
-    def __init__(self, value, color=GRAY, icon=None, label=None, shortcut=None, on_click_custom=None):
+    def __init__(self, value, color=GRAY, icon=None, label=None, shortcut=None, callback=None):
         if label is None:
             label = shorten(str(value), cap=10)
         super(ValueButton, self).__init__(
@@ -74,7 +77,7 @@ class ValueButton(Button):
             icon=icon,
             label=label,
             shortcut=shortcut,
-            on_click_custom=on_click_custom
+            callback=callback
         )
         self.value = value
 
@@ -88,26 +91,26 @@ def has_value(item):
 
 
 class OkButton(ValueButton):
-    def __init__(self, value=True, color=GREEN, icon='👌', label='ok', shortcut='1', on_click_custom=None):
+    def __init__(self, value=True, color=GREEN, icon='👌', label='ok', shortcut='1', callback=None):
         super(OkButton, self).__init__(
             value=value,
             color=color,
             icon=icon,
             label=label,
             shortcut=shortcut,
-            on_click_custom=on_click_custom
+            callback=callback
         )
 
 
 class ErrorButton(ValueButton):
-    def __init__(self, value=False, color=RED, icon='❌', label='err', shortcut='2', on_click_custom=None):
+    def __init__(self, value=False, color=RED, icon='❌', label='err', shortcut='2', callback=None):
         super(ErrorButton, self).__init__(
             value=value,
             color=color,
             icon=icon,
             label=label,
             shortcut=shortcut,
-            on_click_custom=on_click_custom
+            callback=callback
         )
 
 
@@ -120,13 +123,13 @@ def is_control(item):
 
 
 class NextButton(ControlButton):
-    def __init__(self, color=GRAY, icon='→ ', label='next', shortcut='j', on_click_custom=None):
+    def __init__(self, color=GRAY, icon='→ ', label='next', shortcut='j', callback=None):
         super(NextButton, self).__init__(
             color=color,
             icon=icon,
             label=label,
             shortcut=shortcut,
-            on_click_custom=on_click_custom
+            callback=callback
         )
 
     def handle_click(self):
@@ -135,13 +138,13 @@ class NextButton(ControlButton):
 
 
 class BackButton(ControlButton):
-    def __init__(self, color=GRAY, icon='← ', label='back', shortcut='k', on_click_custom=None):
+    def __init__(self, color=GRAY, icon='← ', label='back', shortcut='k', callback=None):
         super(BackButton, self).__init__(
             color=color,
             icon=icon,
             label=label,
             shortcut=shortcut,
-            on_click_custom=on_click_custom
+            callback=callback
         )
 
     def handle_click(self):
