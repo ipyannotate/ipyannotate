@@ -9,12 +9,6 @@ from .widget import DOMWidget, register_widget
 from .colors import COLORS, GRAY, BLUE, RED, GREEN
 
 
-def _method_wrapper(foo):
-    def _wrapper(self, button):
-        return foo(button)
-    return _wrapper
-
-
 @register_widget
 class Button(DOMWidget):
     _view_name = Unicode('ButtonView').tag(sync=True)
@@ -26,7 +20,7 @@ class Button(DOMWidget):
     shortcut = Enum(KEYS, allow_none=True).tag(sync=True)
     active = Bool(False).tag(sync=True)
 
-    def __init__(self, color=GRAY, icon=None, label=None, shortcut=None, callback=None):
+    def __init__(self, color=GRAY, icon=None, label=None, shortcut=None):
         super(Button, self).__init__(
             color=color,
             icon=icon,
@@ -34,8 +28,8 @@ class Button(DOMWidget):
             shortcut=shortcut
         )
         self.annotation = None
+        self.callback = None
 
-        self.on_click(callback)
         self.on_msg(self.handle_message)
 
     @property
@@ -52,7 +46,8 @@ class Button(DOMWidget):
             raise RuntimeError('not registered')
 
     def handle_click(self):
-        raise NotImplemented
+        if self.callback:
+            self.callback(self)
 
     def handle_message(self, _, content, buffers):
         event = content['event']
@@ -63,13 +58,13 @@ class Button(DOMWidget):
         self.send({'event': 'click'})
 
     def on_click(self, callback):
-        self.callback = _method_wrapper(callback).__get__(self, Button) if callback is not None else None
+        self.callback = callback
 
 
 class ValueButton(Button):
     value = Any()
 
-    def __init__(self, value, color=GRAY, icon=None, label=None, shortcut=None, callback=None):
+    def __init__(self, value, color=GRAY, icon=None, label=None, shortcut=None):
         if label is None:
             label = shorten(str(value), cap=10)
         super(ValueButton, self).__init__(
@@ -77,11 +72,11 @@ class ValueButton(Button):
             icon=icon,
             label=label,
             shortcut=shortcut,
-            callback=callback
         )
         self.value = value
 
     def handle_click(self):
+        Button.handle_click(self)
         self.assert_registered()
         self.annotation.toolbar.handle_click(self)
 
@@ -91,26 +86,24 @@ def has_value(item):
 
 
 class OkButton(ValueButton):
-    def __init__(self, value=True, color=GREEN, icon='👌', label='ok', shortcut='1', callback=None):
+    def __init__(self, value=True, color=GREEN, icon='👌', label='ok', shortcut='1'):
         super(OkButton, self).__init__(
             value=value,
             color=color,
             icon=icon,
             label=label,
             shortcut=shortcut,
-            callback=callback
         )
 
 
 class ErrorButton(ValueButton):
-    def __init__(self, value=False, color=RED, icon='❌', label='err', shortcut='2', callback=None):
+    def __init__(self, value=False, color=RED, icon='❌', label='err', shortcut='2'):
         super(ErrorButton, self).__init__(
             value=value,
             color=color,
             icon=icon,
             label=label,
             shortcut=shortcut,
-            callback=callback
         )
 
 
@@ -123,30 +116,30 @@ def is_control(item):
 
 
 class NextButton(ControlButton):
-    def __init__(self, color=GRAY, icon='→ ', label='next', shortcut='j', callback=None):
+    def __init__(self, color=GRAY, icon='→ ', label='next', shortcut='j'):
         super(NextButton, self).__init__(
             color=color,
             icon=icon,
             label=label,
             shortcut=shortcut,
-            callback=callback
         )
 
     def handle_click(self):
+        Button.handle_click(self)
         self.assert_registered()
         self.annotation.next()
 
 
 class BackButton(ControlButton):
-    def __init__(self, color=GRAY, icon='← ', label='back', shortcut='k', callback=None):
+    def __init__(self, color=GRAY, icon='← ', label='back', shortcut='k'):
         super(BackButton, self).__init__(
             color=color,
             icon=icon,
             label=label,
             shortcut=shortcut,
-            callback=callback
         )
 
     def handle_click(self):
+        Button.handle_click(self)
         self.assert_registered()
         self.annotation.back()
