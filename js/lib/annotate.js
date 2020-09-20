@@ -7,8 +7,8 @@ var DOMWidgetModel = widgets.DOMWidgetModel.extend({
 	return _.extend(widgets.DOMWidgetModel.prototype.defaults(), {
 	    _model_module: 'ipyannotate',
 	    _view_module: 'ipyannotate',
-	    _model_module_version: '0.1.0',
-	    _view_module_version: '0.1.0',
+	    _model_module_version: '0.1.1',
+	    _view_module_version: '0.1.1',
 	});
     }
 });

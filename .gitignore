@@ -9,3 +9,8 @@ build/
 node_modules/
 ipyannotate/static/
 coverage.xml
+.history
+.idea/
+ipyannotate/yarn.lock
+js/.history
+js/.idea/
